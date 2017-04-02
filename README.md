@@ -25,3 +25,4 @@ yarn run build-node
 * Mobx
 * Webpack 2
 * Typescript
+* PostCSS + CSS Modules
