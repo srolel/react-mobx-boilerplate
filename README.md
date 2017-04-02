@@ -9,12 +9,12 @@ yarn start
 > visit localhost:3000
 ```
 
-### building for production
+### Building for production
 ```
 yarn run build
 ```
 
-### building for node (server-side rendering)
+### Building for node (server-side rendering)
 ```
 yarn run build-node
 ```
