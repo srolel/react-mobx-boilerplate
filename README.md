@@ -29,6 +29,13 @@ yarn run build-node
 * Typescript
 * PostCSS + CSS Modules
 
+## Features
+
+* HMR of components and store
+* Code-splitting
+* Simple routing (without react-router)
+* Server-side rendering with async data loading
+
 ## TODO
 
 - [ ] Full SSR workflow
