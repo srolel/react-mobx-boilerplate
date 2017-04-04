@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Routing from '../Routing';
 import { observer } from 'mobx-react';
 import Link from './Link';
 

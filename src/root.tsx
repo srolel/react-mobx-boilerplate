@@ -1,16 +1,16 @@
 import * as React from 'react';
 import AppState from './AppState';
-import Routing from './Routing';
+import App from './App';
 import Core from './components/Core';
 import { observer } from 'mobx-react';
 
-interface Props { appState: AppState, routing: Routing }
+interface Props { app: App }
 
 @observer
 class Root extends React.Component<Props, {}> {
 
   render() {
-    const {route} = this.props.routing;
+    const {route} = this.props.app;
     return (
       <Core children={route} />
     );

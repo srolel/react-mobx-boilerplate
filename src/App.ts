@@ -10,7 +10,7 @@ routes.forEach(r => router.addRoute(r.route, r.fn));
 
 const hasWindow = typeof window !== 'undefined';
 
-class Routing {
+class App {
     @observable route: React.ReactElement<any> = null;
     @observable appState: AppState;
 
@@ -51,4 +51,4 @@ class Routing {
     }
 }
 
-export default Routing;
+export default App;

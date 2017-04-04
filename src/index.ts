@@ -2,14 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Root from './root';
 import { AppContainer } from 'react-hot-loader';
-import Routing from './Routing';
+import App from './App';
 
-const routing = new Routing();
+const app = new App();
 
 import './styles/index.css';
 
 let props = {
-    routing
+    app
 };
 
 const render = (Root, newProps?, container = document.getElementById('App')) => {
@@ -30,8 +30,8 @@ if (__DEVELOPMENT__ && module.hot) {
     module.hot.accept(['./root'], reload());
 
     /* 
-    * reloading the routing store allows hot reload to work through chunking and lazy loading,
+    * reloading the app store allows hot reload to work through chunking and lazy loading,
     * while passing the previous appState allows to hot reload the store
     */
-    module.hot.accept(['./Routing'], reload({ routing: new Routing(props.routing.appState) }));
+    module.hot.accept(['./App'], reload({ app: new App(props.app.appState) }));
 }
