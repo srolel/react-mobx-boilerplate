@@ -10,15 +10,19 @@ interface Props { appState: AppState, routing: Routing }
 class Root extends React.Component<Props, {}> {
 
   static childContextTypes = {
-    appState: React.PropTypes.any
+    appState: React.PropTypes.any,
+    routing: React.PropTypes.any,
   };
 
   getChildContext() {
-    return { appState: this.props.appState };
+    return {
+      appState: this.props.appState,
+      routing: this.props.routing
+    };
   }
 
   render() {
-    const {component} = this.props.routing.route;
+    const { component } = this.props.routing.route;
     return (
       <Core children={component && React.createElement(component)} />
     );
