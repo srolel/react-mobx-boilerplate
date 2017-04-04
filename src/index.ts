@@ -8,9 +8,9 @@ const appState = new AppState();
 
 import './styles/index.css';
 
-const render = (Root, render = ReactDOM.render, container = document.getElementById('App')) => {
-    render(
-        React.createElement(AppContainer, {}, React.createElement(Root, { appState })),
+const render = (Root, state = appState, container = document.getElementById('App')) => {
+    ReactDOM.render(
+        React.createElement(AppContainer, {}, React.createElement(Root, { appState: state })),
         container,
     );
 }
@@ -20,9 +20,7 @@ if (typeof window !== 'undefined') {
 }
 
 if (__DEVELOPMENT__ && module.hot) {
-    module.hot.accept([
-        './root', // Same path as imported above
-    ], () => {
-        render(require('./root').default);
-    });
+    const reload = (appState?: AppState) => () => render(require('./root').default, appState);
+    module.hot.accept(['./root'], reload());
+    module.hot.accept(['./AppState'], reload(new AppState()));
 }
