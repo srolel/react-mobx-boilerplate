@@ -7,7 +7,7 @@ import AppState from './AppState';
 
 interface Route {
     route: string;
-    fn: (appState: AppState, params: object) => void;
+    fn: (appState: AppState, params: object) => Promise<JSX.Element>;
 }
 
 let routes: Route[];
