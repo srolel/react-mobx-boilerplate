@@ -5,8 +5,9 @@ import AppState from './AppState';
 
 const appState = new AppState();
 
-export default (pathname) => {
+export default (pathname = '/') => {
+    appState.updateLocation(pathname);
     return ReactDOMServer.renderToString(
-        React.createElement(Root, { appState, getPathname: () => pathname })
+        React.createElement(Root, { appState })
     );
 };
