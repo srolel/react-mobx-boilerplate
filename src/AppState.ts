@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import { Router } from 'routes';
-import routes from './routes';
+import routes, {defaultRoute} from './routes';
 
 const router = Router();
 const noop = () => null;
@@ -29,7 +29,7 @@ class AppState {
 
   @action
   async updateLocation(pathname = hasWindow ? location.pathname : '/') {
-    const route = router.match(pathname);
+    const route = router.match(pathname) || defaultRoute;
     this.route.component = await route.fn();
     this.route.params = route.params;
   }

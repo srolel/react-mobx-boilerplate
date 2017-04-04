@@ -5,16 +5,18 @@
 let routes: { route: string, fn: (cb: (componentClass: React.ComponentClass<any>) => void) => void }[];
 
 const getRoute = p => () => p.then(mod => mod.default);
+
+export const defaultRoute = {
+    route: '/',
+    fn: getRoute(System.import('./components/Home'))
+};
+
 routes = [{
-    route: '/users',
+    route: '/users/?:id?',
     fn: getRoute(System.import('./components/Users'))
 }, {
     route: '/about',
     fn: getRoute(System.import('./components/About'))
-}, {
-    route: '/',
-    fn: getRoute(System.import('./components/Home'))
 }];
-
 
 export default routes;
