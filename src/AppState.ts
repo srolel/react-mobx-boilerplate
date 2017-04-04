@@ -23,8 +23,8 @@ class AppState {
       setInterval(() => {
         this.timer += 1;
       }, 1000);
+      this.hookHistory();
     }
-    this.hookHistory();
   }
 
   @action
@@ -39,9 +39,6 @@ class AppState {
   }
 
   hookHistory() {
-
-    if (!hasWindow) return;
-
     this.updateLocation();
 
     const pushState = history.pushState;
