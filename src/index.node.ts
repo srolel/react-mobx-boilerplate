@@ -8,7 +8,7 @@ const appState = new AppState();
 const routing = new Routing();
 
 export default async (pathname = '/') => {
-    routing.updateLocation(pathname);
+    await routing.updateLocation(pathname);
     return ReactDOMServer.renderToString(
         React.createElement(Root, { appState, routing })
     );

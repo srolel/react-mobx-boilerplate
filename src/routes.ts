@@ -4,7 +4,7 @@
     */
 let routes: { route: string, fn: (cb: (componentClass: React.ComponentClass<any>) => void) => void }[];
 
-const getRoute = p => cb => p.then(mod => cb(mod.default));
+const getRoute = p => () => p.then(mod => mod.default);
 
 export const defaultRoute = {
     route: '/',
