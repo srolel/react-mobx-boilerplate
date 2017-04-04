@@ -28,10 +28,10 @@ class AppState {
   }
 
   @action
-  updateLocation(pathname = hasWindow ? location.pathname : '/') {
+  async updateLocation(pathname = hasWindow ? location.pathname : '/') {
     const route = router.match(pathname);
+    this.route.component = await route.fn();
     this.route.params = route.params;
-    route.fn(component => this.route.component = component);
   }
 
   hookHistory() {
