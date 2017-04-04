@@ -3,14 +3,22 @@ import * as ReactDOM from 'react-dom';
 import Root from './root';
 import { AppContainer } from 'react-hot-loader';
 import AppState from './AppState';
+import Routing from './Routing';
 
 const appState = new AppState();
+const routing = new Routing();
 
 import './styles/index.css';
 
-const render = (Root, state = appState, container = document.getElementById('App')) => {
+let props = {
+    appState,
+    routing
+};
+
+const render = (Root, newProps?, container = document.getElementById('App')) => {
+    props = { ...props, ...newProps };
     ReactDOM.render(
-        React.createElement(AppContainer, {}, React.createElement(Root, { appState: state })),
+        React.createElement(AppContainer, {}, React.createElement(Root, props)),
         container,
     );
 }
@@ -20,7 +28,13 @@ if (typeof window !== 'undefined') {
 }
 
 if (__DEVELOPMENT__ && module.hot) {
-    const reload = (appState?: AppState) => () => render(require('./root').default, appState);
+    const reload = (appState?: Partial<typeof props>) => () => render(require('./root').default, appState);
+
     module.hot.accept(['./root'], reload());
-    module.hot.accept(['./AppState'], reload(new AppState()));
+
+    // using the `reload` method we can extend the store functionality while keeping the state the same
+    module.hot.accept(['./AppState'], reload({ appState: new AppState().reload(props.appState) }));
+
+    // reloading the routing store allows hot reload to work through chunking and lazy loading
+    module.hot.accept(['./Routing'], reload({ routing: new Routing() }));
 }
