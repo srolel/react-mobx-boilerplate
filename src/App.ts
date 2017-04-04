@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { Router } from 'routes';
 import routes, { defaultRoute } from './routes';
-import AppState from './AppState';
+import AppState, { AppStateProps } from './AppState';
 
 const router = Router();
 const noop = () => null;
@@ -14,7 +14,7 @@ class App {
     @observable route: React.ReactElement<any> = null;
     @observable appState: AppState;
 
-    constructor(appState?: AppState) {
+    constructor(appState?: AppStateProps) {
         this.appState = new AppState().reload(appState);
         if (hasWindow) {
             this.hookHistory();

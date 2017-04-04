@@ -2,7 +2,11 @@ import { observable, action } from 'mobx';
 
 const hasWindow = typeof window !== 'undefined';
 
-class AppState {
+export interface AppStateProps {
+  timer: number;
+}
+
+class AppState implements AppStateProps {
   @observable timer: number = 0;
 
   constructor() {
@@ -17,7 +21,7 @@ class AppState {
     this.timer = 0;
   }
 
-  reload(store: AppState) {
+  reload(store: AppStateProps) {
     Object.assign(this, store);
     return this;
   }

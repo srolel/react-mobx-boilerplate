@@ -8,9 +8,8 @@ import App from './App';
 * Entry point for the node bundle, used for server-side rendering.
 */
 
-const app = new App();
-
-export default async (pathname = '/') => {
+export default async (pathname = '/', appState?: AppState) => {
+    const app = new App(appState);
     await app.updateLocation(pathname);
     return ReactDOMServer.renderToString(
         React.createElement(Root, { app })
