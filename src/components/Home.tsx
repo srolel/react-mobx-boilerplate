@@ -3,18 +3,10 @@ import AppState from '../AppState';
 import {observer} from 'mobx-react';
 
 @observer
-class Home extends React.Component<any, any> {
-
-  context: {
-    appState: AppState
-  }
-
-  static contextTypes = {
-    appState: React.PropTypes.any
-  };
+class Home extends React.Component<{appState: AppState}, any> {
 
   onClick = () => {
-    this.context.appState.resetTimer()
+    this.props.appState.resetTimer()
   }
 
   render() {
@@ -23,7 +15,7 @@ class Home extends React.Component<any, any> {
         <h1>
           Welcome to the app!
         </h1>
-        <p>timer: {this.context.appState.timer}</p>
+        <p>timer: {this.props.appState.timer}</p>
         <button onClick={this.onClick}>Reset</button>
       </div>
     );

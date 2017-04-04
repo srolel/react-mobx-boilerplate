@@ -2,16 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Root from './root';
 import { AppContainer } from 'react-hot-loader';
-import AppState from './AppState';
 import Routing from './Routing';
 
-const appState = new AppState();
 const routing = new Routing();
 
 import './styles/index.css';
 
 let props = {
-    appState,
     routing
 };
 
@@ -32,9 +29,9 @@ if (__DEVELOPMENT__ && module.hot) {
 
     module.hot.accept(['./root'], reload());
 
-    // using the `reload` method we can extend the store functionality while keeping the state the same
-    module.hot.accept(['./AppState'], reload({ appState: new AppState().reload(props.appState) }));
-
-    // reloading the routing store allows hot reload to work through chunking and lazy loading
-    module.hot.accept(['./Routing'], reload({ routing: new Routing() }));
+    /* 
+    * reloading the routing store allows hot reload to work through chunking and lazy loading,
+    * while passing the previous appState allows to hot reload the store
+    */
+    module.hot.accept(['./Routing'], reload({ routing: new Routing(props.routing.appState) }));
 }

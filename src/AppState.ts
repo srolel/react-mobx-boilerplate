@@ -3,7 +3,7 @@ import { observable, action } from 'mobx';
 const hasWindow = typeof window !== 'undefined';
 
 class AppState {
-  @observable timer = 0;
+  @observable timer: number = 0;
 
   constructor() {
     if (hasWindow) {
