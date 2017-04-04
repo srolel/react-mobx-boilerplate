@@ -14,6 +14,7 @@ module.exports = env => {
             'app.node': path.join(__dirname, '../src/index.node.ts')
         },
         output: Object.assign(baseConfig.output, {
+            filename: '[name].js',
             libraryTarget: 'umd'
         }),
         plugins: [
