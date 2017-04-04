@@ -31,11 +31,7 @@ class AppState {
   updateLocation(pathname = hasWindow ? location.pathname : '/') {
     const route = router.match(pathname);
     this.route.params = route.params;
-    if (__DEVELOPMENT__) {
-      this.route.component = route.fn();
-    } else {
-      route.fn().then(component => this.route.component = component);
-    }
+    route.fn(component => this.route.component = component);
   }
 
   hookHistory() {

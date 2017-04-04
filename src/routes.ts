@@ -3,30 +3,30 @@
     * to the chunk (`require`) or split them into separate chunks (`System.import`).
     * in development, we use `require` for HMR to work.
     */
-let routes: { route: string, fn: () => React.ComponentClass<any> | Promise<React.ComponentClass<any>> }[];
+let routes: { route: string, fn: (cb: (componentClass: React.ComponentClass<any>) => void) => void }[];
 if (__DEVELOPMENT__) {
-    const getRoute = mod => mod.default
+    const getRoute = mod => cb => cb(mod.default)
     routes = [{
         route: '/users',
-        fn: () => getRoute(require('./components/Users'))
+        fn: getRoute(require('./components/Users'))
     }, {
         route: '/about',
-        fn: () => getRoute(require('./components/About'))
+        fn: getRoute(require('./components/About'))
     }, {
         route: '/',
-        fn: () => getRoute(require('./components/Home'))
+        fn: getRoute(require('./components/Home'))
     }];
 } else {
-    const getRoute = p => p.then(mod => this.setState({ component: mod.default }));
+    const getRoute = p => cb => p.then(mod => cb(mod.default));
     routes = [{
         route: '/users',
-        fn: () => getRoute(System.import('./components/Users'))
+        fn: getRoute(System.import('./components/Users'))
     }, {
         route: '/about',
-        fn: () => getRoute(System.import('./components/About'))
+        fn: getRoute(System.import('./components/About'))
     }, {
         route: '/',
-        fn: () => getRoute(System.import('./components/Home'))
+        fn: getRoute(System.import('./components/Home'))
     }];
 }
 
