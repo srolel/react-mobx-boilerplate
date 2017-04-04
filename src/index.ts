@@ -20,7 +20,5 @@ if (typeof window !== 'undefined') {
 }
 
 if (__DEVELOPMENT__ && module.hot) {
-    const reload = (appState?: AppState) => () => render(require('./root').default, appState);
-    module.hot.accept(['./root'], reload());
-    module.hot.accept(['./AppState'], reload(new AppState()));
+    module.hot.accept(['./root', './AppState'], () => render(require('./root').default));
 }
