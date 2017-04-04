@@ -4,6 +4,10 @@ import Root from './root';
 import AppState from './AppState';
 import App from './App';
 
+/*
+* Entry point for the node bundle, used for server-side rendering.
+*/
+
 const app = new App();
 
 export default async (pathname = '/') => {
