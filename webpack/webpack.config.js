@@ -75,6 +75,7 @@ module.exports = env => {
         },
       }),
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
 
       new webpack.DefinePlugin({
         __DEVELOPMENT__: Boolean(env.dev),
