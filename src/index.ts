@@ -29,10 +29,12 @@ if (__DEVELOPMENT__ && module.hot) {
 
     module.hot.accept(['./root'], reload());
 
+    // global listeners etc.    
+    props.app.unload();
+
     /* 
     * reloading the app store allows hot reload to work through chunking and lazy loading,
     * while passing the previous appState allows to hot reload the store
     */
-    
     module.hot.accept(['./App'], reload({ app: new App(props.app.appState) }));
 }
