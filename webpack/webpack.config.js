@@ -6,15 +6,16 @@ const path = require('path');
 
 module.exports = env => {
   const ifProd = plugin => env.prod ? plugin : undefined;
+  const ifDev = plugin => env.dev ? plugin : undefined;
   const removeEmpty = array => array.filter(p => !!p);
   return {
     entry: {
-      app: [
-        'react-hot-loader/patch',
-        `webpack-dev-server/client?http://localhost:3000`,
-        'webpack/hot/only-dev-server',
+      app: removeEmpty([
+        ifDev('react-hot-loader/patch'),
+        ifDev(`webpack-dev-server/client?http://localhost:3000`),
+        ifDev('webpack/hot/only-dev-server'),
         path.join(__dirname, '../src/index.ts')
-      ],
+      ]),
       vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'tslib'],
     },
 
