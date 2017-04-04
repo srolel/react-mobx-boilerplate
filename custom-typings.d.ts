@@ -132,3 +132,23 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+declare module 'routes' {
+
+  interface Route<T> {
+    params: object;
+    route: string;
+    fn: T;
+  }
+
+  interface Router<T> {
+    addRoute(route: string, arg: T): void;
+    match(path: string): Route<T>;
+  }
+  
+  interface RouterConstructor {
+    <T>(): Router<T>;
+  }
+
+  export const Router: RouterConstructor;
+}

@@ -1,21 +1,23 @@
 import { observable, action } from 'mobx';
 import { Router } from 'routes';
-import routes, { defaultRoute } from './routes';
+import { routes, defaultRoute, Route } from './routes';
 import AppState, { AppStateProps } from './AppState';
-
-const router = Router();
-const noop = () => null;
-
-routes.forEach(r => router.addRoute(r.route, r.fn));
 
 const hasWindow = typeof window !== 'undefined';
 
 class App {
     @observable route: React.ReactElement<any> = null;
     @observable appState: AppState;
+    router: Router<Route>;
 
     constructor(appState?: AppStateProps) {
+
         this.appState = new AppState().reload(appState);
+
+        this.router = Router<Route>();
+
+        routes.forEach(r => this.router.addRoute(r.route, r));
+
         if (hasWindow) {
             this.hookHistory();
         }
@@ -23,31 +25,39 @@ class App {
 
     @action
     async updateLocation(pathname = hasWindow ? location.pathname : '/') {
-        const route = router.match(pathname) || defaultRoute;
-        this.route = await route.fn(this.appState, route.params);
+        const match = this.router.match(pathname);
+        const params = match ? match.params : {};
+        const route = match ? match.fn : defaultRoute;
+        const onEnter = route.onEnter || (() => Promise.resolve());
+        route.getComponent(this.appState, params).then(component => this.route = component);
+        await onEnter(this.appState, params);
     }
+
+    pushState: any;
+    replaceState: any;
 
     hookHistory() {
         this.updateLocation();
 
-        const pushState = history.pushState;
+        this.pushState = history.pushState;
         history.pushState = (...args) => {
-            pushState.apply(history, args);
+            this.pushState.apply(history, args);
             this.updateLocation();
         }
 
-        const replaceState = history.replaceState;
+        this.replaceState = history.replaceState;
         history.replaceState = (...args) => {
-            replaceState.apply(history, args);
+            this.replaceState.apply(history, args);
             this.updateLocation();
         }
 
         window.onpopstate = () => this.updateLocation();
     }
 
-    reload(appState: AppState) {
-        this.appState = appState;
-        return this;
+    unload() {
+        window.onpopstate = null;
+        history.pushState = this.pushState;
+        history.replaceState = this.replaceState;
     }
 }
 

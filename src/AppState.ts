@@ -7,14 +7,21 @@ export interface AppStateProps {
 }
 
 class AppState implements AppStateProps {
-  @observable timer: number = 0;
+  @observable timer = 0;
+  @observable message = '';
 
   constructor() {
     if (hasWindow) {
-      setInterval(() => {
-        this.timer += 1;
-      }, 1000);
+      setInterval(this.incrementTimer, 1000);
     }
+  }
+
+  @action incrementTimer = () => {
+    this.timer += 1;
+  }
+
+  @action setMessage(message: string) {
+    this.message = message;
   }
 
   resetTimer() {
