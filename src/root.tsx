@@ -8,7 +8,7 @@ interface State { component: React.ComponentClass<any> }
 class Root extends React.Component<Props, State> {
 
   static childContextTypes = {
-    appState: React.PropTypes.instanceOf(AppState)
+    appState: React.PropTypes.any
   };
 
   static defaultProps: Partial<Props> = {

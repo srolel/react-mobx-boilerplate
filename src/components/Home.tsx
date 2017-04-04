@@ -10,7 +10,7 @@ class Home extends React.Component<any, any> {
   }
 
   static contextTypes = {
-    appState: React.PropTypes.instanceOf(AppState)
+    appState: React.PropTypes.any
   };
 
   onClick = () => {
