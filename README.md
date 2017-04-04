@@ -39,3 +39,4 @@ yarn run build-node
 ## TODO
 
 - [ ] Full SSR workflow
+- [ ] Optimize bundles
