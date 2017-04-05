@@ -1,5 +1,14 @@
-# A react boilerplate project featuring webpack 2, HMR, code splitting, mobx, SSR
+# React MobX Boilerplate
 
+A React boilerplate project featuring:
+
+ - Webpack 2 + Webpack HMR.
+ - React Hot Reload.
+ - Server-Side Rendering.
+ - MobX.
+ - A sane router.
+ - Code splitting per route.
+ 
 ## Structure
 
 During app development, you should care about these files:
@@ -28,6 +37,10 @@ The rest can be extended if needed:
 1. `webpack/webpack-dev-server.js` - Script to run the development server
 1. `webpack/webpack.config.js` - Webpack configuration for browser bundle
 1. `webpack/webpack.config.node.js` - Webpack configuration for node (server-side rendering) bundle
+
+Typically, when adding a new page you'd add a route for it in `routes.tsx` containing the component to render. Note that the component isn't imported directly but with System.import for code splitting. Then you can add the component to the components folder and the relevant state to the store.
+
+This project is a boilerplate and does not impose strong architectural decisions on users.
 
 ## Installation and Starting
 
