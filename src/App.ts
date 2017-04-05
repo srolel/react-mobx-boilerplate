@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { Router } from 'routes';
 import { routes, defaultRoute, Route } from './routes';
-import AppState, { AppStateProps } from './AppState';
+import AppState, { AppStateProps } from './stores/AppState';
 
 const hasWindow = typeof window !== 'undefined';
 

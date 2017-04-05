@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import Root from './root';
-import {AppStateProps} from './AppState';
+import {AppStateProps} from './stores/AppState';
 import App from './App';
 
 /*

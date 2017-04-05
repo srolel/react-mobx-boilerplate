@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import AppState from '../AppState';
+import AppState from '../stores/AppState';
 import Link from './Link';
 
 @observer

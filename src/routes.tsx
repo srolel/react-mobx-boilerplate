@@ -3,7 +3,7 @@
     * into chunks. We must include each import explicitly.
     */
 import * as React from 'react';
-import AppState from './AppState';
+import AppState from './stores/AppState';
 
 export interface Route {
     route: string;

@@ -6,6 +6,9 @@ export interface AppStateProps {
   timer: number;
 }
 
+/*
+* This is the entry point for the app's state. All stores should go here.
+*/
 class AppState implements AppStateProps {
   @observable timer = 0;
   @observable message = '';
