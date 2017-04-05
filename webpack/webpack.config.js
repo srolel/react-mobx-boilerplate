@@ -9,6 +9,7 @@ module.exports = env => {
   const ifDev = plugin => env.dev ? plugin : undefined;
   const removeEmpty = array => array.filter(p => !!p);
   return {
+    devtool: ifDev('source-map'),
     entry: {
       app: removeEmpty([
         ifDev('react-hot-loader/patch'),
