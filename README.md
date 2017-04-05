@@ -83,3 +83,4 @@ yarn run build-node
 
 - [x] Full SSR workflow
 - [x] Optimize bundles
+- [ ] Static assets (images etc.)
