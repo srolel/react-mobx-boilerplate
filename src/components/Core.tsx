@@ -1,6 +1,7 @@
 import * as   React from 'react';
 import * as styles from './styles.css';
 import Link from './Link';
+import mobx from './mobx.png';
 
 /**
  * <Core />
@@ -11,6 +12,7 @@ import Link from './Link';
 
 const Core = ({ children }) =>
   <div>
+    <div><img width={50} height={50} src={mobx}/></div>
     <nav>
       <Link href="/">Home</Link>
       <Link href='/about'>About</Link>
