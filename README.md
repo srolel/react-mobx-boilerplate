@@ -77,4 +77,4 @@ This project is a boilerplate and does not impose strong architectural decisions
 
 - [x] Full SSR workflow
 - [x] Optimize bundles
-- [ ] Static assets (images etc.)
+- [x] Static assets (images etc.)
