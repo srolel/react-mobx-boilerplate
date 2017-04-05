@@ -35,8 +35,9 @@ yarn run build-node
 * Code-splitting
 * Simple routing (without react-router)
 * Server-side rendering with async data loading
+* Works with remote chrome debugging (vscode launch.json included)
 
 ## TODO
 
 - [ ] Full SSR workflow
-- [ ] Optimize bundles
+- [x] Optimize bundles
