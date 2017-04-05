@@ -35,6 +35,7 @@ class App {
 
     pushState: any;
     replaceState: any;
+    onpopstate: any;
 
     hookHistory() {
         this.updateLocation();
@@ -51,11 +52,15 @@ class App {
             this.updateLocation();
         }
 
-        window.onpopstate = () => this.updateLocation();
+        this.onpopstate = window.onpopstate;
+        window.onpopstate = (e: PopStateEvent) => {
+            this.onpopstate.apply(window, e);
+            this.updateLocation();
+        };
     }
 
     unload() {
-        window.onpopstate = null;
+        window.onpopstate = this.onpopstate;
         history.pushState = this.pushState;
         history.replaceState = this.replaceState;
     }
