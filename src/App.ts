@@ -30,7 +30,7 @@ class App {
         const route = match ? match.fn : defaultRoute;
         const onEnter = route.onEnter || (() => Promise.resolve());
         route.getComponent(this.appState, params).then(component => this.route = component);
-        await onEnter(this.appState, params);
+        await onEnter.call(route, this.appState, params);
     }
 
     pushState: any;
