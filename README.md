@@ -1,14 +1,43 @@
 # React MobX Boilerplate
-
-A React boilerplate project featuring:
-
- - Webpack 2 + Webpack HMR.
- - React Hot Reload.
- - Server-Side Rendering.
- - MobX.
- - A sane router.
- - Code splitting per route.
  
+## Stack
+
+* React
+* MobX
+* Webpack 2
+* Typescript
+* PostCSS + CSS Modules
+
+## Features
+
+* HMR of components and store
+* Code-splitting out of the box
+* Simple routing (without react-router)
+* Server-side rendering with async data loading
+* Works with remote chrome debugging (vscode launch.json included)
+
+## Installation and Starting
+
+### Development server
+```
+yarn
+yarn start
+> visit localhost:3000
+```
+
+### Building for production
+```
+yarn run build
+> serve index.html
+```
+
+### Building for node (server-side rendering)
+```
+yarn run build-node
+> require('build/app.node.js').default('/users')
+```
+
+
 ## Structure
 
 During app development, you should care about these files:
@@ -42,42 +71,6 @@ Typically, when adding a new page you'd add a route for it in `routes.tsx` conta
 
 This project is a boilerplate and does not impose strong architectural decisions on users.
 
-## Installation and Starting
-
-### Development server
-```
-yarn
-yarn start
-> visit localhost:3000
-```
-
-### Building for production
-```
-yarn run build
-> serve index.html
-```
-
-### Building for node (server-side rendering)
-```
-yarn run build-node
-> require('build/app.node.js').default('/users')
-```
-
-## Stack
-
-* React
-* Mobx
-* Webpack 2
-* Typescript
-* PostCSS + CSS Modules
-
-## Features
-
-* HMR of components and store
-* Code-splitting
-* Simple routing (without react-router)
-* Server-side rendering with async data loading
-* Works with remote chrome debugging (vscode launch.json included)
 
 ## TODO
 
