@@ -5,17 +5,24 @@ import AppState, { AppStateProps } from './stores/AppState';
 
 const hasWindow = typeof window !== 'undefined';
 
+// This class represents our main react application, you typically do not
+// need to edit this code yourself at all.
 class App {
+    // the main element we're rendering, this reacts to route changes (MobX).
     @observable route: React.ReactElement<any> = null;
+    // our main app state, this is available in your router
     @observable appState: AppState;
+    // our router
     router: Router<Route>;
 
     constructor(appState?: AppStateProps) {
 
-        this.appState = new AppState().reload(appState);
-
+        // we optionally reload the state useful for hot reload and server-side rendering, 
+        // but also as an extension point for restoring the data from localStorage.
+        this.appState = new AppState().reload(appState); 
+        // initialize our router.
         this.router = Router<Route>();
-
+        
         routes.forEach(r => this.router.addRoute(r.route, r));
 
         if (hasWindow) {
