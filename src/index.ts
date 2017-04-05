@@ -25,12 +25,14 @@ if (typeof window !== 'undefined') {
 }
 
 if (__DEVELOPMENT__ && module.hot) {
-    const reload = (appState?: Partial<typeof props>) => () => render(require('./root').default, appState);
+    const reload = (appState?: Partial<typeof props>) => () => {
+        // global listeners etc.    
+        props.app.unload();
+
+        render(require('./root').default, appState);
+    };
 
     module.hot.accept(['./root'], reload());
-
-    // global listeners etc.    
-    props.app.unload();
 
     /* 
     * reloading the app store allows hot reload to work through chunking and lazy loading,
