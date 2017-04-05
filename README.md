@@ -4,6 +4,7 @@
 
 During app development, you should care about these files:
 
+```
 react-mobx-boilerplate/
 └───src/
     │
@@ -15,6 +16,7 @@ react-mobx-boilerplate/
     |     AppState.ts
     |
     └───routes.tsx
+```
 
 The rest can be extended if needed:
 
