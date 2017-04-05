@@ -15,15 +15,19 @@ class App {
     // our router
     router: Router<Route>;
 
-    constructor(appState?: AppStateProps) {
+    constructor(appState?: AppStateProps, router?: Router<Route>) {
 
         // we optionally reload the state useful for hot reload and server-side rendering, 
         // but also as an extension point for restoring the data from localStorage.
         this.appState = new AppState().reload(appState); 
-        // initialize our router.
-        this.router = Router<Route>();
         
-        routes.forEach(r => this.router.addRoute(r.route, r));
+        // initialize our router, or optionally pass it to the constructor
+        if (!router) {
+            this.router = Router<Route>();
+            routes.forEach(r => this.router.addRoute(r.route, r));
+        } else {
+            this.router = router;
+        }
 
         if (hasWindow) {
             this.hookHistory();
