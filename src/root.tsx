@@ -3,6 +3,7 @@ import AppState from './stores/AppState';
 import App from './App';
 import Core from './components/Core';
 import { observer } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 
 interface Props { app: App }
 
@@ -10,9 +11,12 @@ interface Props { app: App }
 class Root extends React.Component<Props, {}> {
 
   render() {
-    const {route} = this.props.app;
+    const { route } = this.props.app;
     return (
-      <Core children={route} />
+      <div>
+        <Core children={route} />
+        <DevTools />
+      </div>
     );
   }
 }
