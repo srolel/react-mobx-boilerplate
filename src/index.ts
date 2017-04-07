@@ -25,11 +25,11 @@ if (typeof window !== 'undefined') {
 }
 
 if (__DEVELOPMENT__ && module.hot) {
-    const reload = (appState?: Partial<typeof props>) => () => {
+    const reload = (newProps?: Partial<typeof props>) => () => {
         // global listeners etc.    
-        props.app.unload();
+        if (newProps) props.app.unload();
 
-        render(require('./root').default, appState);
+        render(require('./root').default, newProps);
     };
 
     module.hot.accept(['./root'], reload());
