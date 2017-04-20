@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development node webpack/webpack-dev-server --env.dev",
-    "build": "rm -Rf build/* | cross-env NODE_ENV=production webpack --config webpack/webpack.config.js --progress --env.prod",
-    "build-node": "rm -Rf build/* | cross-env NODE_ENV=development webpack --config webpack/webpack.config.node.js --progress --env.dev --env.pathname=\"'/users'\""
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.js --progress --env.prod",
+    "build-node": "cross-env NODE_ENV=development webpack --config webpack/webpack.config.node.js --progress --env.dev --env.pathname=\"'/users'\""
   },
   "repository": {
     "type": "git",
