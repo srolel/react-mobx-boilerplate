@@ -15,7 +15,6 @@ A modern web development boilerplate for React + MobX + Webpack2.
 * Code-splitting out of the box
 * Simple routing (without react-router)
 * Server-side rendering with async data loading
-* Works with remote chrome debugging (vscode launch.json included)
 
 ## Installation and Starting
 
@@ -78,3 +77,4 @@ This project is a boilerplate and does not impose strong architectural decisions
 - [x] Full SSR workflow
 - [x] Optimize bundles
 - [x] Static assets (images etc.)
+- [ ] Make work with remote chrome debugging
