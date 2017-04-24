@@ -8,6 +8,7 @@ module.exports = env => {
   const ifProd = plugin => env.prod ? plugin : undefined;
   const ifDev = plugin => env.dev ? plugin : undefined;
   const removeEmpty = array => array.filter(p => !!p);
+  const NODE_ENV = env.prod ? 'production' : 'development';
   return {
     devtool: ifDev('source-map'),
     entry: {
@@ -86,7 +87,7 @@ module.exports = env => {
 
       new webpack.DefinePlugin({
         __DEVELOPMENT__: Boolean(env.dev),
-        'process.env.NODE_ENV': env.NODE_ENV,
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       }),
 
       ifProd(new ExtractTextPlugin({
