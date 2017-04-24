@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 /*
 * configuration for running in node (Server-side rendering)
-*/ 
+*/
 
 module.exports = env => {
     const baseConfig = require('./webpack.config.js')(env);
@@ -46,6 +46,10 @@ module.exports = env => {
                         'postcss-loader',
                     ]
                 },
+                {
+                    test: /\.(png|jpg)$/,
+                    loader: 'url-loader?limit=8192'
+                }
             ],
         }
     })
