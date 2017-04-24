@@ -40,7 +40,7 @@ class App {
         this.route = component;
     }
 
-    @action async updateLocation(pathname = hasWindow ? location.pathname : '/') {
+    async updateLocation(pathname = hasWindow ? location.pathname : '/') {
         const match = this.router.match(pathname);
         const params = match ? match.params : {};
         const route = match ? match.fn : defaultRoute;
