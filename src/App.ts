@@ -1,4 +1,4 @@
-import {useStrict, observable, action } from 'mobx';
+import { useStrict, observable, action } from 'mobx';
 import { Router } from 'routes';
 import { routes, defaultRoute, Route } from './routes';
 import AppState, { AppStateProps } from './stores/AppState';
@@ -21,8 +21,8 @@ class App {
 
         // we optionally reload the state useful for hot reload and server-side rendering, 
         // but also as an extension point for restoring the data from localStorage.
-        this.appState = new AppState().reload(appState); 
-        
+        this.appState = new AppState().reload(appState);
+
         // initialize our router, or optionally pass it to the constructor
         if (!router) {
             this.router = Router<Route>();
@@ -36,13 +36,16 @@ class App {
         }
     }
 
-    @action
-    async updateLocation(pathname = hasWindow ? location.pathname : '/') {
+    @action setRoute = (component) => {
+        this.route = component;
+    }
+
+    @action async updateLocation(pathname = hasWindow ? location.pathname : '/') {
         const match = this.router.match(pathname);
         const params = match ? match.params : {};
         const route = match ? match.fn : defaultRoute;
         const onEnter = route.onEnter || (() => Promise.resolve());
-        route.getComponent(this.appState, params).then(component => this.route = component);
+        route.getComponent(this.appState, params).then(this.setRoute);
         await onEnter.call(route, this.appState, params);
     }
 

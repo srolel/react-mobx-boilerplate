@@ -27,7 +27,7 @@ class AppState implements AppStateProps {
     this.message = message;
   }
 
-  resetTimer() {
+  @action resetTimer() {
     this.timer = 0;
   }
 
