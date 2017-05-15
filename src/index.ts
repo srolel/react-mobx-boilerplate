@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 import App from './App';
 
 const app = new App();
+app.hookHistory();
 
 import './styles/index.css';
 
@@ -27,7 +28,10 @@ if (typeof window !== 'undefined') {
 if (__DEVELOPMENT__ && module.hot) {
     const reload = (newProps?: Partial<typeof props>) => () => {
         // global listeners etc.    
-        if (newProps) props.app.unload();
+        if (newProps) {
+            props.app.unload();
+            newProps.app.hookHistory();
+        }
 
         render(require('./root').default, newProps);
     };
