@@ -18,7 +18,7 @@ class App {
     router: Router<Route>;
 
     constructor(appState?: AppStateProps, router?: Router<Route>) {
-
+        
         // we optionally reload the state useful for hot reload and server-side rendering, 
         // but also as an extension point for restoring the data from localStorage.
         this.appState = new AppState().reload(appState);
@@ -79,6 +79,7 @@ class App {
         window.onpopstate = this.onpopstate;
         history.pushState = this.pushState;
         history.replaceState = this.replaceState;
+        this.appState.unload();
     }
 }
 
