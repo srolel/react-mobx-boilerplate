@@ -30,6 +30,8 @@ class App {
         } else {
             this.router = router;
         }
+
+        this.hookHistory();
     }
 
     @action setRoute = (component) => {
