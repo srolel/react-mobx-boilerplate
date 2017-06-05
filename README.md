@@ -80,3 +80,4 @@ This project is a boilerplate and does not impose strong architectural decisions
 - [ ] Make work with remote chrome debugging
 - [ ] Add linter
 - [ ] Add PostCSS plugins
+- [ ] Use webpack-dev-middleware instead of webpack-dev-server
