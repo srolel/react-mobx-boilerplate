@@ -78,3 +78,5 @@ This project is a boilerplate and does not impose strong architectural decisions
 - [x] Optimize bundles
 - [x] Static assets (images etc.)
 - [ ] Make work with remote chrome debugging
+- [ ] Add linter
+- [ ] Add PostCSS plugins
