@@ -52,7 +52,7 @@ module.exports = env => {
               'css-loader?modules=true&minimize&-autoprefixer',
               'postcss-loader'
             ]
-            : ExtractTextPlugin.extract({ fallback: 'style-loader', loader: 'css-loader?modules=true&minimize&-autoprefixer!postcss-loader' }),
+            : ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules=true&minimize&-autoprefixer!postcss-loader' }),
         },
         {
           test: /\.(png|jpg)$/,
