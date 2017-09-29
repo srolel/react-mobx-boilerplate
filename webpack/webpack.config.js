@@ -41,7 +41,9 @@ module.exports = env => {
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          loader: ['react-hot-loader/webpack', 'awesome-typescript-loader'],
+          loader: ['react-hot-loader/webpack', env.prod
+            ? 'awesome-typescript-loader?target=es5'
+            : 'awesome-typescript-loader'],
         },
         {
           test: /\.(css)$/,
@@ -60,8 +62,6 @@ module.exports = env => {
         }
       ],
     },
-
-
 
     plugins: removeEmpty([
       new webpack.optimize.CommonsChunkPlugin({
