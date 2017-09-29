@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Root from './root';
 import { AppContainer } from 'react-hot-loader';
-import App from './App';
+import App from './app';
 import './styles/index.css';
 
 const render = (Root, props: { app: App }, container = document.getElementById('App')) => {
