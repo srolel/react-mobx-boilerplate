@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
 const path = require('path');
 
-module.exports = env => {
+module.exports = (env) => {
   const ifProd = plugin => env.prod ? plugin : undefined;
   const ifDev = plugin => env.dev ? plugin : undefined;
   const removeEmpty = array => array.filter(p => !!p);
@@ -14,8 +14,7 @@ module.exports = env => {
     entry: {
       app: removeEmpty([
         ifDev('react-hot-loader/patch'),
-        ifDev(`webpack-dev-server/client?http://localhost:3000`),
-        ifDev('webpack/hot/only-dev-server'),
+        ifDev(`webpack-hot-middleware/client?http://localhost:${env.port}`),
         path.join(__dirname, '../src/index.ts')
       ]),
       vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'tslib'],

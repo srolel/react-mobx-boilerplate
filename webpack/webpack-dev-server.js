@@ -3,9 +3,12 @@
  * This file is used to run our local enviroment
  */
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('./webpack.config');
+const express = require('express');
+const WebpackDevMiddleware = require('webpack-dev-middleware');
+const WebpackHotMiddleware = require('webpack-hot-middleware');
+const fallback = require('express-history-api-fallback');
 const path = require('path');
+const webpackConfig = require('./webpack.config');
 
 /**
  * Always dev enviroment when running webpack dev server
@@ -13,7 +16,12 @@ const path = require('path');
  * whatever you find suites your taste
  */
 
-const env = { dev: process.env.NODE_ENV === 'development' };
+const port = process.env.PORT || 3000;
+
+const env = {
+  dev: process.env.NODE_ENV === 'development',
+  port
+};
 
 const devServerConfig = {
   hot: true,
@@ -26,8 +34,19 @@ const devServerConfig = {
 };
 
 try {
-  const server = new WebpackDevServer(webpack(webpackConfig(env)), devServerConfig);
-  server.listen(3000, 'localhost');
+  const app = express();
+  const compiler = webpack(webpackConfig(env));
+  const devMiddleware = WebpackDevMiddleware(compiler, devServerConfig);
+  const hotMiddleware = WebpackHotMiddleware(compiler);
+  app.use(devMiddleware);
+  app.use(hotMiddleware);
+  // app.use('/*', instance);
+  app.listen(port, 'localhost', err => {
+    if (err) {
+      console.error(err);
+    }
+    console.log(`Server listening to port ${port}`);
+  });
 } catch (e) {
   console.error(e);
 }
