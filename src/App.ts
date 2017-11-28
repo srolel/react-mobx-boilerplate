@@ -54,23 +54,25 @@ class App {
   hookHistory() {
     this.updateLocation();
 
-    this.pushState = history.pushState;
-    history.pushState = (...args) => {
-      this.pushState.apply(history, args);
-      this.updateLocation();
-    }
+    if (typeof history !== 'undefined') {
+      this.pushState = history.pushState;
+      history.pushState = (...args) => {
+        this.pushState.apply(history, args);
+        this.updateLocation();
+      }
 
-    this.replaceState = history.replaceState;
-    history.replaceState = (...args) => {
-      this.replaceState.apply(history, args);
-      this.updateLocation();
-    }
+      this.replaceState = history.replaceState;
+      history.replaceState = (...args) => {
+        this.replaceState.apply(history, args);
+        this.updateLocation();
+      }
 
-    this.onpopstate = window.onpopstate;
-    window.onpopstate = (e: PopStateEvent) => {
-      this.onpopstate.apply(window, e);
-      this.updateLocation();
-    };
+      this.onpopstate = window.onpopstate;
+      window.onpopstate = (e: PopStateEvent) => {
+        this.onpopstate.apply(window, e);
+        this.updateLocation();
+      };
+    }
   }
 
   unload() {
