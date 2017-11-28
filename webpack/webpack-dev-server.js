@@ -40,7 +40,6 @@ try {
   const hotMiddleware = WebpackHotMiddleware(compiler);
   app.use(devMiddleware);
   app.use(hotMiddleware);
-  // app.use('/*', instance);
   app.listen(port, 'localhost', err => {
     if (err) {
       console.error(err);
