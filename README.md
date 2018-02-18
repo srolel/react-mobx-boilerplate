@@ -5,7 +5,7 @@ A modern web development boilerplate for React + MobX + Webpack 3.
 
 * React
 * MobX
-* Webpack 2
+* Webpack 3
 * Typescript
 * PostCSS + CSS Modules
 
