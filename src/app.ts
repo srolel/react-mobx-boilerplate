@@ -1,9 +1,11 @@
-import { useStrict, observable, action } from 'mobx';
+import { configure, observable, action } from 'mobx';
 import { Router } from 'routes';
 import { routes, defaultRoute, Route } from './routes';
 import AppState, { AppStateProps } from './stores/AppState';
 
-useStrict(true);
+configure({
+  enforceActions: true
+});
 
 const hasWindow = typeof window !== 'undefined';
 
