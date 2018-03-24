@@ -1,11 +1,11 @@
 # React MobX Boilerplate
  
-A modern web development boilerplate for React + MobX + Webpack2.
+A modern web development boilerplate for React + MobX + Webpack 3.
 ## Stack
 
 * React
 * MobX
-* Webpack 2
+* Webpack 3
 * Typescript
 * PostCSS + CSS Modules
 
@@ -80,4 +80,4 @@ This project is a boilerplate and does not impose strong architectural decisions
 - [ ] Make work with remote chrome debugging
 - [ ] Add linter
 - [ ] Add PostCSS plugins
-- [ ] Use webpack-dev-middleware instead of webpack-dev-server
+- [x] Use webpack-dev-middleware instead of webpack-dev-server
