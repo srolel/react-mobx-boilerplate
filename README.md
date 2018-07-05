@@ -1,11 +1,11 @@
 # React MobX Boilerplate
  
-A modern web development boilerplate for React + MobX + Webpack 3.
+A modern web development boilerplate for React + MobX + Webpack 4.
 ## Stack
 
 * React
 * MobX
-* Webpack 3
+* Webpack 4
 * Typescript
 * PostCSS + CSS Modules
 
