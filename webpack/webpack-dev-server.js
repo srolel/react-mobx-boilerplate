@@ -23,15 +23,7 @@ const env = {
   port
 };
 
-const devServerConfig = {
-  hot: true,
-  inline: true,
-  https: false,
-  lazy: false,
-  contentBase: path.join(__dirname, '../src/'),
-  historyApiFallback: { disableDotRule: true }, // Need historyApiFallback to be able to refresh on dynamic route
-  stats: { colors: true } // Pretty colors in console
-};
+const devServerConfig = {};
 
 try {
   const app = express();
