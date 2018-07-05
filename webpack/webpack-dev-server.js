@@ -9,6 +9,7 @@ const WebpackHotMiddleware = require('webpack-hot-middleware');
 const history = require('connect-history-api-fallback');
 const path = require('path');
 const webpackConfig = require('./webpack.config');
+const opn = require('opn');
 
 /**
  * Always dev enviroment when running webpack dev server
@@ -38,6 +39,7 @@ try {
       console.error(err);
     }
     console.log(`Server listening to port ${port}`);
+    opn(`http://localhost:${port}`);
   });
 } catch (e) {
   console.error(e);
