@@ -32,15 +32,15 @@ module.exports = env => {
       }),
     ],
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          loader: ['awesome-typescript-loader'],
+          use: ['awesome-typescript-loader'],
         },
         {
           test: /\.(css)$/,
-          loaders:
+          use:
           [
             'css-loader?modules=true&minimize&-autoprefixer',
             'postcss-loader',
@@ -48,9 +48,10 @@ module.exports = env => {
         },
         {
           test: /\.(png|jpg)$/,
-          loader: 'url-loader?limit=8192'
+          use: 'url-loader?limit=8192'
         }
       ],
-    }
+    },
+    optimization: {}
   })
 };

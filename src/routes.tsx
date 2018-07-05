@@ -2,7 +2,7 @@
 import * as React from 'react';
 import AppState from './stores/AppState';
 /*
-    * webpack does static analysis over `System.import` calls to split the app code
+    * webpack does static analysis over `import()` calls to split the app code
     * into chunks. We must include each import explicitly.
     */
 
@@ -30,7 +30,7 @@ const getRoute = p => p.then(mod => mod.default);
 export const defaultRoute: Route = {
   route: '/',
   async getComponent(appState, params) {
-    const Home = await getRoute(System.import('./components/Home'));
+    const Home = await getRoute(import('./components/Home'));
     return <Home appState={appState} />;
   }
 };
@@ -46,13 +46,13 @@ routes = [{
     }
   },
   async getComponent(appState, params: { id: string }) {
-    const Users = await getRoute(System.import('./components/Users'));
+    const Users = await getRoute(import('./components/Users'));
     return <Users id={params.id} appState={appState} />;
   }
 }, {
   route: '/about',
   async getComponent(appState, params) {
-    const About = await getRoute(System.import('./components/About'));
+    const About = await getRoute(import('./components/About'));
     return <About />;
   }
 }];

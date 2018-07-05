@@ -20,20 +20,19 @@ A modern web development boilerplate for React + MobX + Webpack 3.
 
 ### Development server
 ```
-yarn
-yarn start
+npm start
 > visit localhost:3000
 ```
 
 ### Building for production
 ```
-yarn run build
+npm run build
 > serve index.html
 ```
 
 ### Building for node (server-side rendering)
 ```
-yarn run build-node
+npm run build-node
 > require('build/app.node.js').default('/users')
 ```
 
@@ -67,7 +66,7 @@ The rest can be extended if needed:
 1. `webpack/webpack.config.js` - Webpack configuration for browser bundle
 1. `webpack/webpack.config.node.js` - Webpack configuration for node (server-side rendering) bundle
 
-Typically, when adding a new page you'd add a route for it in `routes.tsx` containing the component to render. Note that the component isn't imported directly but with System.import for code splitting. Then you can add the component to the components folder and the relevant state to the store.
+Typically, when adding a new page you'd add a route for it in `routes.tsx` containing the component to render. Note that the component isn't imported directly but with import() for code splitting. Then you can add the component to the components folder and the relevant state to the store.
 
 This project is a boilerplate and does not impose strong architectural decisions on users.
 
