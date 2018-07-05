@@ -16,7 +16,6 @@ module.exports = (env) => {
     mode,
     entry: {
       app: removeEmpty([
-        ifDev('react-hot-loader/patch'),
         ifDev(`webpack-hot-middleware/client?http://localhost:${env.port}`),
         path.join(__dirname, '../src/index.ts')
       ]),
@@ -49,7 +48,7 @@ module.exports = (env) => {
           exclude: /node_modules/,
           use: env.prod
             ? 'awesome-typescript-loader?target=es5'
-            : ['react-hot-loader/webpack', 'awesome-typescript-loader'],
+            : 'awesome-typescript-loader',
         },
         {
           test: /\.(css)$/,

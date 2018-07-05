@@ -1,13 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Root from './root';
-import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import './styles/index.css';
 
 const render = (Root, props: { app: App }, container = document.getElementById('App')) => {
   ReactDOM.render(
-    React.createElement(AppContainer, {}, React.createElement(Root, props)),
+    React.createElement(Root, props),
     container,
   );
 }
