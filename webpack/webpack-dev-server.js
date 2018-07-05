@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const express = require('express');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
 const WebpackHotMiddleware = require('webpack-hot-middleware');
-const fallback = require('express-history-api-fallback');
+const history = require('connect-history-api-fallback');
 const path = require('path');
 const webpackConfig = require('./webpack.config');
 
@@ -30,6 +30,7 @@ try {
   const compiler = webpack(webpackConfig(env));
   const devMiddleware = WebpackDevMiddleware(compiler, devServerConfig);
   const hotMiddleware = WebpackHotMiddleware(compiler);
+  app.use(history());
   app.use(devMiddleware);
   app.use(hotMiddleware);
   app.listen(port, 'localhost', err => {
